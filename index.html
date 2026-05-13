@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Procedural Noise to Terrain</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=Space+Grotesk:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Coba Coba Procedural Noise</h1>
+      <div class="subtitle">
+        Uji coba proses bertahap: dari noise 1D, value noise 2D, Perlin noise,
+        FBM, hingga terrain 3D yang bisa diputar. Gunakan slider untuk melihat
+        setiap tahap.
+      </div>
+    </header>
+
+    <main>
+      <section class="panel controls">
+        <div><strong>Langkah</strong>: <span id="stepLabel">0</span></div>
+        <input id="stepRange" type="range" min="0" max="7" step="1" value="0" />
+        <div class="row">
+          <button id="prevBtn">Prev</button>
+          <button id="nextBtn">Next</button>
+          <button id="playBtn">Auto Play</button>
+        </div>
+        <div class="legend" id="stepDesc"></div>
+        <div class="step-list" id="stepList"></div>
+        <div class="param-group" id="stepInfo"></div>
+        <div class="param-group">
+          <div><strong>FBM Parameters</strong></div>
+          <div class="param-row">
+            <div>Octaves</div>
+            <input
+              id="octavesRange"
+              type="range"
+              min="1"
+              max="10"
+              step="1"
+              value="6"
+            />
+            <div id="octavesVal">6</div>
+          </div>
+          <div class="param-row">
+            <div>Gain</div>
+            <input
+              id="gainRange"
+              type="range"
+              min="0.2"
+              max="0.8"
+              step="0.05"
+              value="0.5"
+            />
+            <div id="gainVal">0.50</div>
+          </div>
+          <div class="param-row">
+            <div>Lacunarity</div>
+            <input
+              id="lacunarityRange"
+              type="range"
+              min="1.5"
+              max="3.0"
+              step="0.1"
+              value="2.0"
+            />
+            <div id="lacunarityVal">2.0</div>
+          </div>
+          <div class="row">
+            <button id="resetParamsBtn">Reset Params</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="viewer">
+        <div class="canvases">
+          <div>
+            <canvas id="canvas1d" width="460" height="180"></canvas>
+            <div class="legend">Noise 1D (line plot)</div>
+          </div>
+          <div>
+            <canvas id="canvas2d" width="460" height="280"></canvas>
+            <div class="legend">Noise 2D / Heightmap</div>
+          </div>
+          <div>
+            <canvas id="canvasColor" width="460" height="280"></canvas>
+            <div class="legend">Color mapping / shading</div>
+          </div>
+        </div>
+        <div class="three-wrap" id="threeMount">
+          <div class="hud">Drag untuk memutar terrain 3D</div>
+          <div class="three-overlay" id="threeOverlay">
+            3D aktif di langkah terakhir. Pakai slider langkah untuk menuju
+            tahap final.
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Dibuat untuk demonstrasi procedural noise. Semua noise dibuat manual tanpa
+      library noise pihak ketiga.
+    </footer>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
